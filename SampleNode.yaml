@@ -1,0 +1,43 @@
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: test2
+  name: test2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test2
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: test2
+    spec:
+      containers:
+      - image: shrikanth24/samplenode
+        name: test2
+        resources: {}
+status: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: test2
+  name: test2
+spec:
+  type: NodePort
+  ports:
+  - port: 8081
+    protocol: TCP
+    targetPort: 8081
+    nodePort: 32200
+  selector:
+    app: test2
+status:
+  loadBalancer: {}
